@@ -3,10 +3,7 @@ import re
 import sys
 import json
 import requests
-
-def svj(j: dict, nm: str) -> None:
-    s = json.dumps(j, ensure_ascii=False, indent=4)
-    open('result/' + nm + '.json', 'wb').write(s.encode('utf8'))
+from utils import *
 
 u = "https://api-static.mihoyo.com/common/blackboard/bh3_wiki/v1/home/content/list?app_sn=bh3_wiki&channel_id=17"
 res = requests.get(u)
@@ -55,8 +52,7 @@ for i in j:
     else:
         print('!jid:', jid, jname)
         continue
-
-    open('result/' + jname + '.list', 'wb').write('\n'.join(l).encode('utf8'))
+    # open('result/' + jname + '.list', 'wb').write('\n'.join(l).encode('utf8'))
 
 svj(j2, 'res')
 
