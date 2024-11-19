@@ -11,6 +11,7 @@ import keyboard
 import numpy as np
 from PIL import ImageGrab
 import pypinyin
+from utils import *
 
 reader = easyocr.Reader(['ch_sim'])
 # reader = easyocr.Reader(['ch_sim', 'en'])
@@ -30,9 +31,8 @@ def f1() -> None:
 
     print('get str')
     l = list()
-    pattern = r'[\u4e00-\u9fa5]+'
     for idx, s, acc in ocr(data):
-        matches = re.findall(pattern, s)
+        matches = re.findall(ZH_PATTERN, s)
         l += matches
     print('ocr:', ' '.join(l))
 
