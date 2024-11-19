@@ -3,7 +3,6 @@ import re
 import sys
 import json
 import requests
-from urllib.parse import unquote
 
 def svj(j: dict, nm: str) -> None:
     s = json.dumps(j, ensure_ascii=False, indent=4)
