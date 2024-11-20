@@ -27,6 +27,8 @@ for item in ['人偶', '协同者', '宿舍名册', '圣痕', '武器', '敌人'
         s = s.replace('逐火十三英桀', '')
         s = s.replace('异能', '').replace('机械', '').replace('生物', '')
         matches = re.findall(ZH_PATTERN, s)
+        if len(matches) < 1:
+            continue
         k = ''.join(matches)
         if k not in deduplicate:
             deduplicate[k] = name
