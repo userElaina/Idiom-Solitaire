@@ -79,8 +79,8 @@ def prt_msg(ans: dict, dict_name: bool = True) -> str:
         for dictionary in ans[pronounce]:
             if dictionary == STR_ZH:
                 continue
-            _empty_flg = False
             for word in ans[pronounce][dictionary]:
+                _empty_flg = False
                 s += '\n ' + word
                 if dict_name:
                     s += ' (%s)' % dictionary
@@ -88,3 +88,17 @@ def prt_msg(ans: dict, dict_name: bool = True) -> str:
             s += ' (无)'
         s += '\n\n'
     return s
+
+
+if __name__ == '__main__':
+    print('start')
+    while True:
+        s = input('>>> ')
+        _py = pypinyin.pinyin(
+            s,
+            style=pypinyin.Style.NORMAL,
+            heteronym=True,
+            v_to_u=False
+        )[-1]
+        ans = finds_from_pinyin(_py)
+        print(prt_msg(ans)[:-2])
