@@ -5,7 +5,7 @@ import easyocr
 import keyboard
 import numpy as np
 from PIL import ImageGrab
-from readict import finds_from_zh, STR_ZH
+from readict import finds_from_zh, prt_msg
 
 ZH_PATTERN = r'[\u4e00-\u9fa5]+'
 
@@ -33,15 +33,7 @@ def f1() -> None:
     print('[ocr: %s]' % ' '.join(l))
     print()
 
-    ans = finds_from_zh(l)
-    for pronounce in ans:
-        print('%s (%s):' % (pronounce, ''. join(ans[pronounce][STR_ZH])))
-        for dictionary in ans[pronounce]:
-            if dictionary == STR_ZH:
-                continue
-            for word in ans[pronounce][dictionary]:
-                print('%s (%s)' % (word, dictionary))
-        print()
+    print(prt_msg(finds_from_zh(l)))
 
 
 if __name__ == '__main__':

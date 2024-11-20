@@ -4,7 +4,11 @@ try:
     import pypinyin
     def _pypinyin_dict(words: list) -> dict:
         ans = dict()
-        _words = [i[-1] for i in words]
+        _words = ''
+        for i in words:
+            _i = i[-1]
+            if _i not in _words:
+                _words += _i
         _py = pypinyin.pinyin(
             _words,
             style=pypinyin.Style.NORMAL,
@@ -13,8 +17,8 @@ try:
         )
         for idx in range(len(_words)):
             for pronounce in _py[idx]:
-                ans.setdefault(pronounce, list())
-                ans[pronounce].append(_words[idx])
+                ans.setdefault(pronounce, '')
+                ans[pronounce] += _words[idx]
         return ans
 except ImportError:
     print('(optional) pinyin support: pip install pypinyin')
@@ -62,3 +66,25 @@ def finds_from_zh(words: list) -> dict:
 
 def find_from_zh(word: str) -> dict:
     return finds_from_zh([word])
+
+
+def prt_msg(ans: dict, dict_name: bool = True) -> str:
+    s = ''
+    for pronounce in ans:
+        s += pronounce
+        if STR_ZH in ans[pronounce]:
+            s += ' (%s)' % ans[pronounce][STR_ZH]
+        s += ':'
+        _empty_flg = True
+        for dictionary in ans[pronounce]:
+            if dictionary == STR_ZH:
+                continue
+            _empty_flg = False
+            for word in ans[pronounce][dictionary]:
+                s += '\n ' + word
+                if dict_name:
+                    s += ' (%s)' % dictionary
+        if _empty_flg:
+            s += ' (无)'
+        s += '\n\n'
+    return s
