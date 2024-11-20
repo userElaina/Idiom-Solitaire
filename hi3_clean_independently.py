@@ -14,7 +14,8 @@ for name in j[item]:
         dress: str = ''
         l_dress = list()
         for dress in j[item][name][build]:
-            dress = dress.replace('诡戏干役', '诡戏千役').replace('原皮', '夜隐重霞')
+            dress = dress.replace('诡戏干役', '诡戏千役')
+            dress = dress.replace('原皮', '夜隐重霞')
             dress = dress.replace('-表人格', '').replace('-里人格', '')
             if not dress.startswith('8'):
                 dress = dress.replace('-', '·')
