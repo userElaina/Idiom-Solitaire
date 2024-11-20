@@ -3,7 +3,6 @@
 # conda install pillow==9.4.0 numpy easyocr cpuonly -c pytorch -y
 # pip install keyboard
 
-import re
 import sys
 import time
 import easyocr

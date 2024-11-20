@@ -1,3 +1,4 @@
+import re
 import json
 
 ZH_PATTERN = r'[\u4e00-\u9fa5]+'
