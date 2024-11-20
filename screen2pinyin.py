@@ -1,8 +1,4 @@
-# conda create -y -n py311 python=3.11
-# conda install pytorch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 cpuonly -c pytorch -y
-# conda install pillow==9.4.0 numpy easyocr cpuonly -c pytorch -y
-# pip install keyboard
-
+import re
 import sys
 import time
 import easyocr
@@ -10,7 +6,8 @@ import keyboard
 import numpy as np
 from PIL import ImageGrab
 import pypinyin
-from utils import *
+
+ZH_PATTERN = r'[\u4e00-\u9fa5]+'
 
 reader = easyocr.Reader(['ch_sim'])
 # reader = easyocr.Reader(['ch_sim', 'en'])
