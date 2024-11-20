@@ -5,7 +5,7 @@ import easyocr
 import keyboard
 import numpy as np
 from PIL import ImageGrab
-import pypinyin
+from readict import finds_from_zh, STR_ZH
 
 ZH_PATTERN = r'[\u4e00-\u9fa5]+'
 
@@ -32,29 +32,15 @@ def f1() -> None:
         l += matches
     print('ocr:', ' '.join(l))
 
-    print('get pinyin')
-    s = ''
-    for i in l:
-        if i[0] not in s:
-            s += i[0]
-    # print('zh:', s)
-
-    l = pypinyin.pinyin(
-        s,
-        style=pypinyin.Style.NORMAL,
-        heteronym=True,
-        v_to_u=False
-    )
-    # print('pinyin:', l)
-
-    d = dict()
-    for i, j in enumerate(s):
-        for k in l[i]:
-            if k in d:
-                d[k].append(j)
-            else:
-                d[k] = [j]
-    print('pinyin:', d)
+    ans = finds_from_zh(l)
+    for pronounce in ans:
+        print('%s (%s):' % (pronounce, ''. join(ans[pronounce][STR_ZH])))
+        for dictionary in ans[pronounce]:
+            if dictionary == STR_ZH:
+                continue
+            for word in ans[pronounce][dictionary]:
+                print('%s (%s)' % (word, dictionary))
+        print()
 
 
 if __name__ == '__main__':
