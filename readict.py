@@ -36,7 +36,7 @@ def dict_hi3rd(s: str) -> list:
 
 
 all_dict_func = {
-    'hi3': dict_hi3rd
+    '崩坏3rd': dict_hi3rd
 }
 
 def find_from_pinyin(pronounce: str) -> dict:

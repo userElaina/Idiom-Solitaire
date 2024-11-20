@@ -16,21 +16,22 @@ def ocr(img: np.ndarray) -> str:
     return reader.readtext(img)
 
 def f1() -> None:
-    print('get Meta Shift S')
+    print('[Meta Shift S]')
     time.sleep(5)
 
-    print('get img')
+    print('[get img...]')
     img = ImageGrab.grabclipboard()
     while img is None:
         img = ImageGrab.grabclipboard()
     data = np.array(img)
 
-    print('get str')
+    print('[get str...]')
     l = list()
     for idx, s, acc in ocr(data):
         matches = re.findall(ZH_PATTERN, s)
         l += matches
-    print('ocr:', ' '.join(l))
+    print('[ocr: %s]' % ' '.join(l))
+    print()
 
     ans = finds_from_zh(l)
     for pronounce in ans:
