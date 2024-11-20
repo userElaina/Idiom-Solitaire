@@ -7,14 +7,13 @@ name: str = ''
 
 item = '女武神'
 j_i = dict()
-for name in j[item]:
-    j_name = dict()
+for role in j[item]:
+    j_role = dict()
     build: str = ''
-    for build in j[item][name]:
+    for build in j[item][role]:
         dress: str = ''
         l_dress = list()
-        for dress in j[item][name][build]:
-            dress = dress.replace('诡戏干役', '诡戏千役')
+        for dress in j[item][role][build]:
             dress = dress.replace('原皮', '夜隐重霞')
             dress = dress.replace('-表人格', '').replace('-里人格', '')
             if not dress.startswith('8'):
@@ -22,13 +21,14 @@ for name in j[item]:
             dress = dress.replace(' · ', '·')
             if dress not in l_dress:
                 l_dress.append(dress)
+        del dress
         build = build.replace('-', '·').replace(' · ', '·')
         if build != l_dress[0]:
             print(build, l_dress)
             raise ValueError(build)
-        j_name[build] = l_dress
+        j_role[build] = l_dress
 
-    j_i[name] = j_name
+    j_i[role] = j_role
 j2[item] = j_i
 
 
