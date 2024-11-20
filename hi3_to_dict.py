@@ -34,7 +34,7 @@ for item in ['人偶', '协同者', '宿舍名册', '圣痕', '武器', '敌人'
             deduplicate[k] = name
             for kk in matches[1:]:
                 if kk not in deduplicate:
-                    deduplicate[kk] = dress
+                    deduplicate[kk] = name
 
 
 svj(deduplicate, 'res3')
